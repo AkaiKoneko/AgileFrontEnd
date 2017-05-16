@@ -1,20 +1,11 @@
-import { Component } from '@angular/core';
-
-export class Task {
-  id: number;
-  name: string;
-  duration: number;
-}
-
-const TASKS: Task[] = [
-  { id: 11, name: 'Zadanie 1', duration: 55},
-  { id: 12, name: 'Zadanie 2', duration: 22 },
-
-];
+import {Component, OnInit} from '@angular/core';
+import { Task } from './task';
+import  { TaskService } from './task.service';
 
 
 @Component({
   selector: 'my-app',
+  providers: [TaskService],
   template: `
     <h1>{{title}}</h1>
     
@@ -28,16 +19,8 @@ const TASKS: Task[] = [
       </li>
     </ul>
     
-
-    <div *ngIf="selectedTask">
-      <h2>{{selectedTask.name}} details!</h2>
-      <div><label>id: </label>{{selectedTask.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedTask.name" placeholder="name">
-        <input [(ngModel)]="selectedTask.id" placeholder="id">
-      </div>
-    </div>
+  <task-detail [task]="selectedTask"></task-detail>
+    
   `,
   styles: [`
     .selected {
@@ -91,14 +74,22 @@ const TASKS: Task[] = [
 
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Angular Tast';
   selectedTask: Task;
-  tasks = TASKS;
+  tasks: Task[];
 
+  getTasks(): void {
+    this.taskService.getTasks().then(tasks => this.tasks = tasks);
+  }
 
   onSelect(task: Task) {
   this.selectedTask = task;
   }
+  ngOnInit(): void {
+    this.getTasks();
+  }
+
+  constructor(private  taskService: TaskService) {}
 }
 
