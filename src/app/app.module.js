@@ -10,6 +10,16 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var task_detail_component_1 = require("./task-detail.component");
+var task_component_1 = require("./myTask/task.component");
+var task_service_1 = require("./_services/task.service");
+var http_1 = require("@angular/http");
+var app_routing_1 = require("./app.routing");
+var index_1 = require("./_services/index");
+var index_2 = require("./_directives/index");
+var index_3 = require("./_guards/index");
+var index_4 = require("./login/index");
+var index_5 = require("./home/index");
+var index_6 = require("./register/index");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -19,11 +29,25 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            forms_1.FormsModule
+            forms_1.FormsModule,
+            http_1.HttpModule,
+            app_routing_1.routing,
+        ],
+        providers: [
+            task_service_1.TaskService,
+            index_1.UserService,
+            index_1.AlertService,
+            index_1.AuthenticationService,
+            index_3.AuthGuard
         ],
         declarations: [
             app_component_1.AppComponent,
-            task_detail_component_1.TaskDetailComponent
+            index_2.AlertComponent,
+            task_detail_component_1.TaskDetailComponent,
+            task_component_1.TaskComponent,
+            index_5.HomeComponent,
+            index_4.LoginComponent,
+            index_6.RegisterComponent
         ],
         bootstrap: [app_component_1.AppComponent]
     })

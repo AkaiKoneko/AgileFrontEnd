@@ -1,7 +1,7 @@
 /**
  * Created by Akai on 2017-05-16.
  */
-import { Task } from './task';
+import { Task } from './_models/task';
 
 
 export const TASKS: Task[] = [
