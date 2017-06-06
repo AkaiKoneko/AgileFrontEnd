@@ -1,0 +1,15 @@
+<div *ngIf="project">
+
+  <h2>{{project.name}} details!</h2>
+
+  <div><label>id: </label>{{project.id}}</div>
+  <div><label>id: </label>{{project.startDate | date:'fullDate' }}</div>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="project.name" placeholder="name">
+    <input [(ngModel)]="project.id" placeholder="id">
+  </div>
+  <iteration [currentProject]="project.id"></iteration>
+  <br>
+  <button [disabled]="loading" class="btn btn-primary" (click)="this.project=null">Zamknij</button>
+</div>
