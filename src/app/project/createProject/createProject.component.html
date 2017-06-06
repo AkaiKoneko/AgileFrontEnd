@@ -1,0 +1,33 @@
+﻿
+<div *ngIf="create">
+  <div>
+      <h2>Register</h2>
+      <form name="form" (ngSubmit)="f.form.valid && newProject()" #f="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted}">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+              <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted}">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" name="description" [(ngModel)]="model.description" #description="ngModel" required />
+              <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted}">
+              <label for="startDate">Starting Date</label>
+              <input type="date" class="form-control" name="startDate" [(ngModel)]="model.startDate" #startDate="ngModel" required />
+              <div *ngIf="f.submitted && !startDate.valid" class="help-block">startDate is required</div>
+          </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted}">
+          <label for="completionDate">Completion Date</label>
+          <input type="date" class="form-control" name="completionDate" [(ngModel)]="model.completionDate" #completionDate="ngModel" required />
+          <div *ngIf="f.submitted && !completionDate.valid" class="help-block">completionDate is required</div>
+        </div>
+
+          <div class="form-group">
+              <button [disabled]="loading" class="btn btn-primary">Register</button>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          </div>
+      </form>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+
+  <h2>My Projects</h2>
+  <ul class="heroes">
+    <li *ngFor="let project of projects "
+        (click)="onSelect(project)"
+        [class.selected]="task === selectedTask">
+      <span class="badge">{{project.id}}</span>{{project.name}}
+
+    </li>
+    <project-detail [project]="selectedProject"></project-detail>
+
+    <create-project [create]="create"></create-project>
+      <button [disabled]="loading" class="btn btn-primary" (click)="create=!create">
+        <span *ngIf="create">Zamknij</span>
+        <span *ngIf="!create">Nowy Projekt</span>
+      </button>
+  </ul>
+  <p><a [routerLink]="['/']">Powrót</a></p>
+

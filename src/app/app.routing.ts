@@ -5,12 +5,18 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
 import { TaskComponent } from  './myTask/index';
+import { ProjectComponent } from  './project/intex';
+import { BoardComponent } from  './board/index';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'myTasks', component : TaskComponent, canActivate: [AuthGuard]},
+  { path: 'myProjects', component : ProjectComponent, canActivate: [AuthGuard]},
+  { path: 'myProjects', component : ProjectComponent, canActivate: [AuthGuard]},
+  { path: 'kanbanBoard', component : BoardComponent, canActivate: [AuthGuard]},
+
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

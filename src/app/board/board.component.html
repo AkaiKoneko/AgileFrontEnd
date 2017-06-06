@@ -1,0 +1,14 @@
+﻿<div class="col-md-6 col-md-offset-3">
+  <table class="table">
+    <thead>
+    <th>Story Name</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let story of stories">
+      <td>{{story.name}}</td>
+      <td><tasks [tasks]="story.tasks"></tasks></td>
+    </tr>
+    </tbody>
+  </table>
+  <p><a [routerLink]="['/myProjects']">Powrót</a></p>
+</div>

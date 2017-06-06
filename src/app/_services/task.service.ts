@@ -21,14 +21,14 @@ export class TaskService {
   constructor(private http: Http) {}
 
   getTasks(id: number): Observable<Task[]> {
-    console.log(id);
     return this.http.get(this.taskUrl + id)
       .map((response: Response) => <Task[]>response.json())
       .catch(this.handleError);
   }
-
-
-
+  getStoryTasks(id: number) {
+    console.log('s');
+    return this.http.get('http://localhost:8080/api/storyTasks' + id, this.header()).map((response: Response) => response.json());
+  }
 
   private extractData(res: Response) {
     let body = res.json();
@@ -55,5 +55,17 @@ export class TaskService {
     return this.http.post(this.taskUrl, { name }, options)
       .map(this.extractData)
       .catch(this.handleError);
+  }
+
+  private header() {
+    // create authorization header
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+      let headers = new Headers;
+      headers.append('Authorization', 'Basic ' + btoa(currentUser.ssoId + ':' + currentUser.password));
+      headers.append('Access-Control-Allow-Origin', '*');
+      headers.append('Content-Type', 'application/json');
+      return new RequestOptions({headers: headers});
+    }
   }
 }

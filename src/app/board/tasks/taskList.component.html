@@ -1,0 +1,18 @@
+<table class="table">
+  <tr>
+    <th>Finish</th>
+    <th>TODO</th>
+    <th>Undefined</th>
+  </tr>
+  <ng-container *ngFor="let task of tasks ">
+  <tr >
+    <td *ngIf="task.status=='Finish'" dropzone="copy">{{task.name}}</td>
+    <td *ngIf="task.status!='Finish'" ondrop="droped()"> </td>
+    <td>todo</td>
+    <td *ngIf="task.status=='undefined'" draggable="true">{{task.name}}</td>
+    <td *ngIf="task.status!='undefined'">{{task.name}}</td>
+  </tr>
+  </ng-container>
+
+</table>
+

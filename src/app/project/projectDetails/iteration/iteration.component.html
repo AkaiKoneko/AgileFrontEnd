@@ -1,0 +1,9 @@
+<ul class="heroes">
+  <li *ngFor="let iteration of iterations ">
+
+    <span class="badge" onclick="redirect(kanbanBoard)">{{iteration.id}}</span>{{iteration.name}}
+    <a [routerLink]="['/kanbanBoard']"[queryParams]="{iterationId: iteration.id}">Redirect</a>
+  </li>
+
+</ul>
+

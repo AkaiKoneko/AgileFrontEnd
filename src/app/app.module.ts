@@ -4,19 +4,26 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
 import{ TaskDetailComponent} from './task-detail.component';
+import{ ProjectDetailComponent } from './project/projectDetails/project-details.component';
 import { TaskComponent } from './myTask/task.component';
 import { TaskService } from './_services/task.service';
 
 import {HttpModule} from '@angular/http';
 import {routing} from './app.routing';
 
-import { UserService , AlertService , AuthenticationService } from './_services/index';
+import { UserService , AlertService , AuthenticationService , ProjectService , IterationService , StoryService} from './_services/index';
 
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { LoginComponent } from './login/index';
 import { HomeComponent } from './home/index';
 import { RegisterComponent } from './register/index';
+import { ProjectComponent } from  './project/intex';
+import { BoardComponent } from  './board/index';
+import {CreateProjectComponent} from './project/createProject/createProject.component';
+import { IterationComponent } from './project/projectDetails/iteration/iteration.component';
+import { TaskListComponent } from './board/tasks/taskList.component';
+
 
 
 @NgModule({
@@ -31,16 +38,25 @@ import { RegisterComponent } from './register/index';
     UserService,
     AlertService,
     AuthenticationService,
+    ProjectService,
+    IterationService,
+    StoryService,
     AuthGuard
   ],
   declarations: [
     AppComponent,
     AlertComponent,
+    CreateProjectComponent,
     TaskDetailComponent,
+    ProjectDetailComponent,
     TaskComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProjectComponent,
+    IterationComponent,
+    BoardComponent,
+    TaskListComponent,
   ],
   bootstrap:    [ AppComponent ]
 })

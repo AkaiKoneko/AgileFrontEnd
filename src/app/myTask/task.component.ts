@@ -22,6 +22,7 @@ import { UserService } from '../_services/user.service';
     </ul>
     
   <task-detail [task]="selectedTask"></task-detail>
+    <p><a [routerLink]="['/']">Powrót</a></p>
     
   `,
   styleUrls : ['app/myTask/task.style.css'],

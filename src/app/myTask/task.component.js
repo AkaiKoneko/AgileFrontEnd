@@ -34,7 +34,7 @@ TaskComponent = __decorate([
     core_1.Component({
         selector: 'my-tasks',
         providers: [task_service_1.TaskService],
-        template: "\n    <h1>{{title}}</h1>\n    \n    \n    <h2>My Tasks</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"let task of tasks \" \n          (click)=\"onSelect(task)\" \n          [class.selected]=\"task === selectedTask\">\n        <span class=\"badge\">{{task.id}}</span>{{task.name}}\n      </li>\n    </ul>\n    \n  <task-detail [task]=\"selectedTask\"></task-detail>\n    \n  ",
+        template: "\n    <h1>{{title}}</h1>\n    \n    \n    <h2>My Tasks</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"let task of tasks \" \n          (click)=\"onSelect(task)\" \n          [class.selected]=\"task === selectedTask\">\n        <span class=\"badge\">{{task.id}}</span>{{task.name}}\n      </li>\n    </ul>\n    \n  <task-detail [task]=\"selectedTask\"></task-detail>\n    <p><a [routerLink]=\"['/']\">Powr\u00F3t</a></p>\n    \n  ",
         styleUrls: ['app/myTask/task.style.css'],
     }),
     __metadata("design:paramtypes", [task_service_1.TaskService, user_service_1.UserService])
