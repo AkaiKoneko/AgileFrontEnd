@@ -8,33 +8,47 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var task_service_1 = require("../_services/task.service");
-var user_service_1 = require("../_services/user.service");
-var TaskComponent = (function () {
-    function TaskComponent(taskService, userService) {
+const core_1 = require("@angular/core");
+const task_service_1 = require("../_services/task.service");
+const user_service_1 = require("../_services/user.service");
+let TaskComponent = class TaskComponent {
+    constructor(taskService, userService) {
         this.taskService = taskService;
         this.userService = userService;
         this.title = 'Angular Tast';
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
-    TaskComponent.prototype.getTasks = function () {
-        var _this = this;
-        this.taskService.getTasks(this.currentUser.id).subscribe(function (tasks) { return _this.tasks = tasks; });
-    };
-    TaskComponent.prototype.onSelect = function (task) {
+    getTasks() {
+        this.taskService.getTasks(this.currentUser.id).subscribe(tasks => this.tasks = tasks);
+    }
+    onSelect(task) {
         this.selectedTask = task;
-    };
-    TaskComponent.prototype.ngOnInit = function () {
+    }
+    ngOnInit() {
         this.getTasks();
-    };
-    return TaskComponent;
-}());
+    }
+};
 TaskComponent = __decorate([
     core_1.Component({
         selector: 'my-tasks',
         providers: [task_service_1.TaskService],
-        template: "\n    <h1>{{title}}</h1>\n    \n    \n    <h2>My Tasks</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"let task of tasks \" \n          (click)=\"onSelect(task)\" \n          [class.selected]=\"task === selectedTask\">\n        <span class=\"badge\">{{task.id}}</span>{{task.name}}\n      </li>\n    </ul>\n    \n  <task-detail [task]=\"selectedTask\"></task-detail>\n    <p><a [routerLink]=\"['/']\">Powr\u00F3t</a></p>\n    \n  ",
+        template: `
+    <h1>{{title}}</h1>
+    
+    
+    <h2>My Tasks</h2>
+    <ul class="heroes">
+      <li *ngFor="let task of tasks " 
+          (click)="onSelect(task)" 
+          [class.selected]="task === selectedTask">
+        <span class="badge">{{task.id}}</span>{{task.name}}
+      </li>
+    </ul>
+    
+  <task-detail [task]="selectedTask"></task-detail>
+    <p><a [routerLink]="['/']">Powrót</a></p>
+    
+  `,
         styleUrls: ['app/myTask/task.style.css'],
     }),
     __metadata("design:paramtypes", [task_service_1.TaskService, user_service_1.UserService])

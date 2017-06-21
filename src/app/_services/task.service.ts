@@ -29,6 +29,12 @@ export class TaskService {
     console.log('s');
     return this.http.get('http://localhost:8080/api/storyTasks' + id, this.header()).map((response: Response) => response.json());
   }
+  createTask(task: Task, storyNumber: number) {
+    return this.http.post('http://localhost:8080/api/task' + storyNumber + '/' + task.status, task,
+      this.header()).map((response: Response) => response.json());
+
+  }
+
 
   private extractData(res: Response) {
     let body = res.json();

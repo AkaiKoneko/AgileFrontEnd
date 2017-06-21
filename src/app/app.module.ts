@@ -23,15 +23,27 @@ import { BoardComponent } from  './board/index';
 import {CreateProjectComponent} from './project/createProject/createProject.component';
 import { IterationComponent } from './project/projectDetails/iteration/iteration.component';
 import { TaskListComponent } from './board/tasks/taskList.component';
+import { EditTaskComponent } from './board/editTask/editTask.component'
 
 
+import {ButtonModule} from 'primeng/primeng';
+import {DialogModule} from 'primeng/primeng';
+import {ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
+
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports:      [
     BrowserModule,
+    NoopAnimationsModule,
     FormsModule,
     HttpModule,
     routing,
+    ButtonModule,
+    ConfirmDialogModule,
+    DialogModule,
+
+
   ],
   providers: [
     TaskService,
@@ -41,9 +53,11 @@ import { TaskListComponent } from './board/tasks/taskList.component';
     ProjectService,
     IterationService,
     StoryService,
-    AuthGuard
+    AuthGuard,
+    ConfirmationService,
   ],
   declarations: [
+
     AppComponent,
     AlertComponent,
     CreateProjectComponent,
@@ -57,6 +71,7 @@ import { TaskListComponent } from './board/tasks/taskList.component';
     IterationComponent,
     BoardComponent,
     TaskListComponent,
+    EditTaskComponent,
   ],
   bootstrap:    [ AppComponent ]
 })

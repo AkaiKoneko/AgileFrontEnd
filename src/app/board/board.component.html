@@ -1,5 +1,8 @@
-﻿<div class="col-md-6 col-md-offset-3">
-  <table class="table">
+﻿<div class="col-sm-2">
+  MENU
+</div>
+<div class="col-md-8">
+  <table class="ui-datatable" >
     <thead>
     <th>Story Name</th>
     </thead>
@@ -7,8 +10,29 @@
     <tr *ngFor="let story of stories">
       <td>{{story.name}}</td>
       <td><tasks [tasks]="story.tasks"></tasks></td>
-    </tr>
-    </tbody>
-  </table>
-  <p><a [routerLink]="['/myProjects']">Powrót</a></p>
+
+      <taskForm [storyId]="story.id" (onSubmit)="fillStories()"></taskForm>
+        </tr>
+
+        <ng-container *ngIf="createStory">
+          <form #f="ngForm" (ngSubmit)="submitStory(f)" novalidate>
+            <br><input name="name" ngModel required #first="ngModel">
+            <button>Submit</button>
+          </form>
+
+        </ng-container>
+
+
+        <button [disabled]="loading" class="btn btn-primary" (click)="createStory=!createStory">
+          <span *ngIf="createStory">Zamknij</span>
+          <span *ngIf="!createStory">Nowe Story</span>
+        </button>
+        </tbody>
+      </table>
+
+
+
+
+      <p><a [routerLink]="['/myProjects']">Powrót</a></p>
 </div>
+

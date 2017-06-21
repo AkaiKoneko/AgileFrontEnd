@@ -1,9 +1,12 @@
-<div *ngIf="project">
 
-  <h2>{{project.name}} details!</h2>
+<div *ngIf="project" >
 
-  <div><label>id: </label>{{project.id}}</div>
-  <div><label>id: </label>{{project.startDate | date:'fullDate' }}</div>
+  <h2>Szczegóły {{project.name}}</h2>
+
+  <div><label>Id: </label>{{project.id}}</div>
+  <div><label>Nazwa : </label>{{project.name}}</div>
+  <div><label>Data rozpoczęcia : </label>{{project.startDate | date:'fullDate' }}</div>
+  <div><label>Data zakończenia : </label>{{project.completionDate | date:'fullDate' }}</div>
   <div>
     <label>name: </label>
     <input [(ngModel)]="project.name" placeholder="name">

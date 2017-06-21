@@ -1,0 +1,20 @@
+
+<button pButton type="button" label="Nowe Zadanie"  (click)="createTask=!createTask"></button>
+
+<!--<ng-container *ngIf="createTask">-->
+<p-dialog header="Title" [(visible)]="createTask||editTask">
+  <form #f="ngForm" (ngSubmit)="submitTask(f)" novalidate >
+    <br><label>Nazwa :</label>
+    <input type="text" pInputText [(ngModel)]="model.name" name="name"/>
+    <br> <label>Czas trwania :</label>
+    <input name="duration" type="number" ngModel>
+    <br><label>Status :</label>
+    <input name="status" type="text" ngModel>
+    <br>
+    <button pButton type="button" label="Stworz" (click)=submitTask(f)></button>
+    <button pButton type="button" label="Zamknij" (click)="createTask=!createTask"></button>
+  </form>
+
+</p-dialog>
+
+<!--</ng-container>-->

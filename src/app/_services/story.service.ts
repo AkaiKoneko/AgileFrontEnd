@@ -16,6 +16,9 @@ export class StoryService {
     return this.http.get('http://localhost:8080/api/storyList' + id, this.header()).map((response: Response) => response.json());
   }
 
+  createStory(story: Story, iterationId: number) {
+    return this.http.post('http://localhost:8080/api/story' + iterationId, story, this.header()).map((response: Response) => response.json());
+  }
   private header() {
     // create authorization header
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));

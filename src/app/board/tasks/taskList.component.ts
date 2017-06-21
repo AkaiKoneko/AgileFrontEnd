@@ -4,7 +4,7 @@
 /**
  * Created by Akai on 2017-05-29.
  */
-import {Component, Input, } from '@angular/core';
+import {Component, EventEmitter, Input, Output,} from '@angular/core';
 
 import { Task } from '../../_models/index';
 
@@ -18,10 +18,10 @@ import { Task } from '../../_models/index';
 
 export class TaskListComponent {
   @Input() tasks: Task[];
-
+  @Output() onSubmit = new EventEmitter<Task>()
   constructor() {}
 
-droped() {
-    console.log('drop');
-}
+  editTask(task: Task) {
+    this.onSubmit.emit(task);
+  }
 }
