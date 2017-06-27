@@ -21,13 +21,14 @@ import { RegisterComponent } from './register/index';
 import { ProjectComponent } from  './project/intex';
 import { BoardComponent } from  './board/index';
 import {CreateProjectComponent} from './project/createProject/createProject.component';
-import { IterationComponent } from './project/projectDetails/iteration/iteration.component';
+import { IterationComponent } from './project/iteration/iteration.component';
+import { CreateIterationComponent } from './project/createIteration/createIteration.component'
 import { TaskListComponent } from './board/tasks/taskList.component';
-import { EditTaskComponent } from './board/editTask/editTask.component'
+import { NewTaskComponent } from './board/editTask/newTask.component'
 
 
-import {ButtonModule} from 'primeng/primeng';
-import {DialogModule} from 'primeng/primeng';
+import {ButtonModule, SplitButtonModule} from 'primeng/primeng';
+import {DialogModule , CalendarModule} from 'primeng/primeng';
 import {ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,6 +43,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ButtonModule,
     ConfirmDialogModule,
     DialogModule,
+    CalendarModule,
+    SplitButtonModule,
 
 
   ],
@@ -69,9 +72,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     ProjectComponent,
     IterationComponent,
+    CreateIterationComponent,
     BoardComponent,
     TaskListComponent,
-    EditTaskComponent,
+    NewTaskComponent,
   ],
   bootstrap:    [ AppComponent ]
 })

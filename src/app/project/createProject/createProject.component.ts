@@ -25,8 +25,9 @@ export class CreateProjectComponent {
         this.projectService.create(this.model)
             .subscribe(
                 data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
+                    this.alertService.success('Project created', true);
+                    this.router.navigate(['/myProjects']);
+                  // TODO emiter eventu odswieżenia widoku
                 },
                 error => {
                     this.alertService.error(error);

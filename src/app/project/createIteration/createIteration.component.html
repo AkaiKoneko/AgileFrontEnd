@@ -1,0 +1,16 @@
+﻿
+
+  <p-dialog header="Title" [(visible)]="createIteration">
+    <form #f="ngForm" (ngSubmit)="submitTask(f)" novalidate >
+      <label for="name">Name :</label>
+      <input type="text" class="form-control" [(ngModel)]="model.name" name="name"/>
+      <label for="startDate">Starting Date :</label>
+      <input type="date" class="form-control" name="startDate" [(ngModel)]="model.startDate" #startDate="ngModel" required />
+      <label for="endDate">Completion Date :</label>
+      <input type="date" class="form-control" name="completionDate" [(ngModel)]="model.endDate" #completionDate="ngModel" required />
+      <br>
+      <button pButton type="button" label="Create" (click)=newIteration(f)></button>
+      <button pButton type="button" label="Cancel" (click)="createIteration=!createIteration"></button>
+    </form>
+  </p-dialog>
+

@@ -24,9 +24,10 @@ const index_6 = require("./register/index");
 const intex_1 = require("./project/intex");
 const index_7 = require("./board/index");
 const createProject_component_1 = require("./project/createProject/createProject.component");
-const iteration_component_1 = require("./project/projectDetails/iteration/iteration.component");
+const iteration_component_1 = require("./project/iteration/iteration.component");
+const createIteration_component_1 = require("./project/createIteration/createIteration.component");
 const taskList_component_1 = require("./board/tasks/taskList.component");
-const editTask_component_1 = require("./board/editTask/editTask.component");
+const newTask_component_1 = require("./board/editTask/newTask.component");
 const primeng_1 = require("primeng/primeng");
 const primeng_2 = require("primeng/primeng");
 const primeng_3 = require("primeng/primeng");
@@ -44,6 +45,8 @@ AppModule = __decorate([
             primeng_1.ButtonModule,
             primeng_3.ConfirmDialogModule,
             primeng_2.DialogModule,
+            primeng_2.CalendarModule,
+            primeng_1.SplitButtonModule,
         ],
         providers: [
             task_service_1.TaskService,
@@ -68,9 +71,10 @@ AppModule = __decorate([
             index_6.RegisterComponent,
             intex_1.ProjectComponent,
             iteration_component_1.IterationComponent,
+            createIteration_component_1.CreateIterationComponent,
             index_7.BoardComponent,
             taskList_component_1.TaskListComponent,
-            editTask_component_1.EditTaskComponent,
+            newTask_component_1.NewTaskComponent,
         ],
         bootstrap: [app_component_1.AppComponent]
     })

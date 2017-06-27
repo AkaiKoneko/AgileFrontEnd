@@ -13,7 +13,7 @@
   position: relative;
   left: 0;
   background-color: #EEE;
-  margin: .5em;
+  margin: 5em auto;
   padding: .3em 0;
   height: 1.6em;
   border-radius: 4px;
@@ -41,7 +41,29 @@
   position: relative;
   left: -1px;
   top: -4px;
-  height: 1.8em;
+  height: 1.6em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+}
+ul, ul li {
+
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul li {
+  background-color: #aed5ef;
+  margin: .5em auto;
+  border-radius: 4px;
+  height: 2em;
+  text-align: center;
+}
+
+ul li:hover{
+  color: #f5f6ff;
+  background-color: #607D8B;
+}
+p-splitButton{
+  float: right;
 }

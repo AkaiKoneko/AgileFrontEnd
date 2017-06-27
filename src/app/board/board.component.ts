@@ -5,7 +5,8 @@ import { StoryService } from '../_services/index';
 import {ActivatedRoute, Params} from '@angular/router';
 import {TaskService} from '../_services/task.service';
 import {NgForm} from '@angular/forms';
-import {Task} from "protractor/built/taskScheduler";
+import {Task} from '../_models/index';
+import {AlertService} from '../_services/alert.service';
 
 
 
@@ -27,14 +28,15 @@ export class BoardComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private storyService: StoryService, private taskService: TaskService, private activatedRoute: ActivatedRoute ) {
+  constructor(private storyService: StoryService, private taskService: TaskService, private activatedRoute: ActivatedRoute, private alertService: AlertService) {
   }
 
   ngOnInit() {
     this.createTask = true;  // bo zaraz zmienia na false
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.iterationId = params['iterationId'];
-    });
+    this.activatedRoute.queryParams.subscribe((params => {
+      this.iterationId = +params['iterationId'];
+
+    }));
     this.loadIterationStories(this.iterationId);
   }
 
@@ -49,9 +51,11 @@ fillStories() {
 
   submitStory(f: NgForm) {
     this.model = f.value;
-    console.log(this.model);
     this.storyService.createStory(this.model, this.iterationId)
-      .subscribe(() => {this.ngOnInit(); });
+      .subscribe(() => {
+      this.ngOnInit();
+      this.alertService.success('Story Created', true);
+    });
     this.createStory = false;
   }
 

@@ -5,16 +5,17 @@ import { StoryService } from '../../_services/index';
 import {ActivatedRoute, Params} from '@angular/router';
 import {TaskService} from '../../_services/task.service';
 import {NgForm} from '@angular/forms';
+import {AlertService} from "../../_services/alert.service";
 
 
 
 @Component({
   moduleId: module.id,
-  templateUrl: 'editTask.component.html',
+  templateUrl: 'newTask.component.html',
   selector : 'taskForm'
 })
 
-export class EditTaskComponent implements OnInit {
+export class NewTaskComponent implements OnInit {
   // iterationId: number;
   @Input() storyId: number;
   @Output() onSubmit = new EventEmitter<boolean>()
@@ -23,7 +24,7 @@ export class EditTaskComponent implements OnInit {
   editTask: boolean;
   model: Task = new Task();
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService, private alertService: AlertService) {
 
   }
 
@@ -36,8 +37,11 @@ export class EditTaskComponent implements OnInit {
     this.model = f.value;
     console.log(this.model);
     this.taskService.createTask(this.model, this.storyId)
-      .subscribe(() => {this.createTask = false; this.onSubmit.emit(true); });
-
+      .subscribe(() => {
+      this.createTask = false;
+      this.onSubmit.emit(true);
+      this.alertService.success('Task Created', true);
+      });
   }
 
 }

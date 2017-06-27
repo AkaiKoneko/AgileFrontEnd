@@ -1,5 +1,12 @@
 ﻿<div class="col-sm-2">
+</div>
+<h2>Iteration Table View </h2>
+<div class="col-sm-2">
   MENU
+  <p><a [routerLink]="['/myTasks']">User Info</a></p>
+  <p><a [routerLink]="['/myTasks']">My Tasks</a></p>
+  <p><a [routerLink]="['/myProjects']">My Projects</a></p>
+  <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
 <div class="col-md-8">
   <table class="ui-datatable" >
@@ -14,19 +21,10 @@
       <taskForm [storyId]="story.id" (onSubmit)="fillStories()"></taskForm>
         </tr>
 
-        <ng-container *ngIf="createStory">
-          <form #f="ngForm" (ngSubmit)="submitStory(f)" novalidate>
-            <br><input name="name" ngModel required #first="ngModel">
-            <button>Submit</button>
-          </form>
-
-        </ng-container>
 
 
-        <button [disabled]="loading" class="btn btn-primary" (click)="createStory=!createStory">
-          <span *ngIf="createStory">Zamknij</span>
-          <span *ngIf="!createStory">Nowe Story</span>
-        </button>
+
+        <button [disabled]="loading" class="btn btn-primary" (click)="createStory=!createStory">New Story</button>
         </tbody>
       </table>
 
@@ -36,3 +34,12 @@
       <p><a [routerLink]="['/myProjects']">Powrót</a></p>
 </div>
 
+
+<p-dialog header="Create Story" [(visible)]="createStory">
+  <form #f="ngForm" (ngSubmit)="submitStory(f)" novalidate>
+    <label>Name :</label>
+    <input type="text" pInputText [(ngModel)]="model.name" name="name"/>
+    <br><button pButton type="button" label="Create" (click)=submitTask(f)></button>
+    <button pButton type="button" label="Close" (click)="createStory=!createStory"></button>
+  </form>
+</p-dialog>

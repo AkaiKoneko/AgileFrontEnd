@@ -1,22 +1,29 @@
+<div class="row">
 <div class="col-sm-2">
   MENU
+  <p><a [routerLink]="['/myTasks']">User Info</a></p>
+  <p><a [routerLink]="['/myTasks']">My Tasks</a></p>
+  <p><a [routerLink]="['/myProjects']">My Projects</a></p>
+  <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
-<div  class="col-md-8">
+<div  class="col-md-4">
   <h2>My Projects</h2>
-  <ul class="heroes">
-    <li *ngFor="let project of projects "
-        (click)="onSelect(project)"
-        [class.selected]="task === selectedTask">
-      <span class="badge">{{project.id}}</span>{{project.name}}
+  <ul>
+    <li *ngFor="let project of projects"  (click)="onSelect(project)" >
+      {{project.name}}
+      <p-splitButton label="Details" icon="fa-cog" (onClick)="showProjectDetails(project)" [model]="items" ></p-splitButton>
+
     </li>
-    <button [disabled]="loading" class="btn btn-primary" (click)="create=!create">
-      <span *ngIf="create">Zamknij</span>
-      <span *ngIf="!create">Nowy Projekt</span>
-    </button>
-    <project-detail [project]="selectedProject"></project-detail>
+    <button [disabled]="loading" class="btn btn-primary" (click)="create=!create"> New Project </button>
 
     <create-project [create]="create"></create-project>
 
   </ul>
-  <p><a [routerLink]="['/']">Powrót</a></p>
+
+</div>
+  <div  class="col-md-4">
+    <project-detail [project]="selectedProject" *ngIf="showDetails"></project-detail>
+    <iteration *ngIf="showIteration" [currentProject]="selectedProject.id"></iteration>
+  </div>
+
 </div>

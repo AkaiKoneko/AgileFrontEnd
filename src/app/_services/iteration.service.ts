@@ -21,8 +21,8 @@ export class IterationService {
     return this.http.get('http://localhost:8080/api/iterationList' + id, this.header()).map((response: Response) => response.json());
   }
 
-  create(iteration: Iteration) {
-    return this.http.post('http://localhost:8080/api/iteration', iteration, this.header()).map((response: Response) => response.json());
+  create(iteration: Iteration, currentProject: number) {
+    return this.http.post('http://localhost:8080/api/iteration' + currentProject, iteration, this.header()).map((response: Response) => response.json());
 
   }
   /*
