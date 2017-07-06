@@ -34,6 +34,9 @@ export class TaskService {
       this.header()).map((response: Response) => response.json());
 
   }
+  updateTask(task: Task) {
+    return this.http.put('http://localhost:8080/api/task', task, this.header()).map((response: Response) => response.json());
+  }
 
 
   private extractData(res: Response) {

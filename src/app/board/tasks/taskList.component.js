@@ -15,12 +15,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by Akai on 2017-05-29.
  */
 const core_1 = require("@angular/core");
+const index_1 = require("../../_models/index");
+const alert_service_1 = require("../../_services/alert.service");
+const task_service_1 = require("../../_services/task.service");
 let TaskListComponent = class TaskListComponent {
-    constructor() {
+    constructor(taskService, alertService) {
+        this.taskService = taskService;
+        this.alertService = alertService;
         this.onSubmit = new core_1.EventEmitter();
+        this.editingTask = false;
+    }
+    ngOnInit() {
+        this.editingTask = false;
+        this.taskToEdit = new index_1.Task;
     }
     editTask(task) {
-        this.onSubmit.emit(task);
+        this.editingTask = true;
+        this.taskToEdit = task;
+        // this.onSubmit.emit(true);
+    }
+    submitTask(f) {
+        this.taskToEdit = f.value;
+        console.log(this.taskToEdit);
+        this.taskService.updateTask(this.taskToEdit)
+            .subscribe(() => {
+            this.onSubmit.emit(true);
+            this.alertService.success('Task Edited', true);
+        });
     }
 };
 __decorate([
@@ -38,7 +59,7 @@ TaskListComponent = __decorate([
         // styleUrls : ['project.style.css'],
         selector: 'tasks',
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [task_service_1.TaskService, alert_service_1.AlertService])
 ], TaskListComponent);
 exports.TaskListComponent = TaskListComponent;
 //# sourceMappingURL=taskList.component.js.map

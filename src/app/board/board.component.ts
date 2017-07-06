@@ -22,10 +22,6 @@ export class BoardComponent implements OnInit {
   createTask: boolean;
   createStory: boolean;
   stories: Story[] = [];
-
-  taskToEdit: Task;
-
-
   model: any = {};
 
   constructor(private storyService: StoryService, private taskService: TaskService, private activatedRoute: ActivatedRoute, private alertService: AlertService) {

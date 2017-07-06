@@ -47,6 +47,7 @@ AppModule = __decorate([
             primeng_2.DialogModule,
             primeng_2.CalendarModule,
             primeng_1.SplitButtonModule,
+            primeng_3.TooltipModule,
         ],
         providers: [
             task_service_1.TaskService,

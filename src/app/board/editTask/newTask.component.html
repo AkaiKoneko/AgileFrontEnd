@@ -1,8 +1,8 @@
 
-<button pButton type="button" label="Nowe Zadanie"  (click)="createTask=!createTask"></button>
+<button pButton type="button" label="New Task" icon="fa-plus" (click)="createTask=!createTask"></button>
 
 <!--<ng-container *ngIf="createTask">-->
-<p-dialog header="Title" [(visible)]="createTask||editTask">
+<p-dialog header="Title" [(visible)]="createTask">
   <form #f="ngForm" (ngSubmit)="submitTask(f)" novalidate >
     <br><label>Nazwa :</label>
     <input type="text" pInputText [(ngModel)]="model.name" name="name"/>

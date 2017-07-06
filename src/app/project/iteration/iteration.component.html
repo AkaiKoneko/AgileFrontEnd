@@ -1,10 +1,9 @@
 <h2>Project iterations</h2>
 <ul>
   <li *ngFor="let iteration of iterations ">
-
-    <span onclick="redirect(kanbanBoard)">{{iteration.id}}</span>{{iteration.name}}
+    {{iteration.name}}
     <a [routerLink]="['/kanbanBoard']"[queryParams]="{iterationId: iteration.id}">Widok tablicy</a>
-    <p-splitButton label="Details" icon="fa-cog" (onClick)="goToBoard(iteration.id)" [model]="items" ></p-splitButton>
+    <p-splitButton label="Board View" icon="fa-cog" (onClick)="goToBoard(iteration.id)" [model]="items" ></p-splitButton>
   </li>
 
 </ul>

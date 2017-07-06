@@ -33,6 +33,9 @@ let TaskService = class TaskService {
     createTask(task, storyNumber) {
         return this.http.post('http://localhost:8080/api/task' + storyNumber + '/' + task.status, task, this.header()).map((response) => response.json());
     }
+    updateTask(task) {
+        return this.http.put('http://localhost:8080/api/task', task, this.header()).map((response) => response.json());
+    }
     extractData(res) {
         let body = res.json();
         return body.data || {};

@@ -6,6 +6,7 @@
   <p><a [routerLink]="['/myTasks']">User Info</a></p>
   <p><a [routerLink]="['/myTasks']">My Tasks</a></p>
   <p><a [routerLink]="['/myProjects']">My Projects</a></p>
+  <p><a [routerLink]="['/myProjects']">Back</a></p>
   <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
 <div class="col-md-8">
@@ -15,23 +16,21 @@
     </thead>
     <tbody>
     <tr *ngFor="let story of stories">
-      <td>{{story.name}}</td>
-      <td><tasks [tasks]="story.tasks"></tasks></td>
-
+      <td>
+        {{story.name}}
+        <div>
+          <button pButton type="button" class="ui-button-secondary" (click)="count()" icon="fa-cog"></button>
+          <button pButton type="button" class="ui-button-danger" (click)="count()" icon="fa-trash"></button>
+        </div>
+      </td>
+      <td><tasks [tasks]="story.tasks" (onSubmit)="fillStories()"></tasks></td>
       <taskForm [storyId]="story.id" (onSubmit)="fillStories()"></taskForm>
         </tr>
-
-
-
-
-        <button [disabled]="loading" class="btn btn-primary" (click)="createStory=!createStory">New Story</button>
+        <button pButton type="button"  label="New Story" icon="fa-plus" (click)="createStory=!createStory"></button>
         </tbody>
       </table>
 
 
-
-
-      <p><a [routerLink]="['/myProjects']">Powrót</a></p>
 </div>
 
 

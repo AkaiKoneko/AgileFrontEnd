@@ -29,7 +29,7 @@ import { NewTaskComponent } from './board/editTask/newTask.component'
 
 import {ButtonModule, SplitButtonModule} from 'primeng/primeng';
 import {DialogModule , CalendarModule} from 'primeng/primeng';
-import {ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
+import {ConfirmDialogModule, ConfirmationService , TooltipModule} from 'primeng/primeng';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -45,6 +45,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     DialogModule,
     CalendarModule,
     SplitButtonModule,
+    TooltipModule,
 
 
   ],
