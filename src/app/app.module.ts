@@ -24,10 +24,10 @@ import {CreateProjectComponent} from './project/createProject/createProject.comp
 import { IterationComponent } from './project/iteration/iteration.component';
 import { CreateIterationComponent } from './project/createIteration/createIteration.component'
 import { TaskListComponent } from './board/tasks/taskList.component';
-import { NewTaskComponent } from './board/editTask/newTask.component'
+import { NewTaskComponent } from './board/newTask/newTask.component'
 
 
-import {ButtonModule, SplitButtonModule} from 'primeng/primeng';
+import {ButtonModule, SplitButtonModule, DropdownModule} from 'primeng/primeng';
 import {DialogModule , CalendarModule} from 'primeng/primeng';
 import {ConfirmDialogModule, ConfirmationService , TooltipModule} from 'primeng/primeng';
 
@@ -46,6 +46,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     CalendarModule,
     SplitButtonModule,
     TooltipModule,
+    DropdownModule,
 
 
   ],

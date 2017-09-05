@@ -4,12 +4,14 @@
 /**
  * Created by Akai on 2017-05-29.
  */
-import {Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 import { Task } from '../../_models/index';
 import {NgForm} from "@angular/forms";
 import {AlertService} from "../../_services/alert.service";
 import {TaskService} from "../../_services/task.service";
+import {TaskStatus} from "../../_models/taskStatus";
+import {SelectItem} from "primeng/primeng";
 
 
 @Component({
@@ -19,9 +21,12 @@ import {TaskService} from "../../_services/task.service";
   selector : 'tasks',
 })
 
-export class TaskListComponent implements OnInit{
+export class TaskListComponent implements OnInit {
   @Input() tasks: Task[];
-  @Output() onSubmit = new EventEmitter<Boolean>()
+  @Input() statuses: TaskStatus[];
+  @Output() onSubmit = new EventEmitter<Boolean>();
+
+  statusesName: SelectItem[];
   editingTask: boolean = false;
   taskToEdit: Task;
   constructor(private taskService: TaskService, private alertService: AlertService) {}
@@ -29,6 +34,17 @@ export class TaskListComponent implements OnInit{
 ngOnInit() {
     this.editingTask = false;
     this.taskToEdit = new Task;
+    this.getStatusesName();
+}
+
+getStatusesName() {
+    this.statusesName = [];
+
+    for (let status of this.statuses){
+      console.log(status.name);
+      this.statusesName.push({label: status.name, value : status.name});
+    }
+
 }
 
   editTask(task: Task) {
@@ -37,13 +53,21 @@ ngOnInit() {
    // this.onSubmit.emit(true);
   }
 
-  submitTask(f: NgForm) {
-    this.taskToEdit = f.value;
-    console.log(this.taskToEdit);
+  deleteTask(task: Task) {
+    this.taskService.deleteTask(task)
+      .subscribe(() => {
+        this.onSubmit.emit(true);
+        this.alertService.success('Task Deleted', true);
+
+      });
+  }
+
+  submitTask() {
     this.taskService.updateTask(this.taskToEdit)
       .subscribe(() => {
         this.onSubmit.emit(true);
         this.alertService.success('Task Edited', true);
+        this.editingTask = false;
       });
   }
 

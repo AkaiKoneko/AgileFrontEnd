@@ -1,4 +1,4 @@
-﻿import {Component, Input} from '@angular/core';
+﻿import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AlertService, ProjectService } from '../../_services/index';
@@ -10,7 +10,8 @@ import { AlertService, ProjectService } from '../../_services/index';
 })
 
 export class CreateProjectComponent {
-  @Input() create: boolean;
+  @Input() create: boolean
+  @Output() onSubmit = new EventEmitter<Boolean>()
 
   model: any = {};
     loading = false;
@@ -25,9 +26,9 @@ export class CreateProjectComponent {
         this.projectService.create(this.model)
             .subscribe(
                 data => {
-                    this.alertService.success('Project created', true);
-                    this.router.navigate(['/myProjects']);
-                  // TODO emiter eventu odswieżenia widoku
+                  this.alertService.success('Project created', true);
+                  this.create = false;
+                  this.onSubmit.emit(true);
                 },
                 error => {
                     this.alertService.error(error);

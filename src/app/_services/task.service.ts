@@ -3,7 +3,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Http, Response , HttpModule , Headers , RequestOptions } from '@angular/http';
+import { Http, Response , Headers , RequestOptions } from '@angular/http';
 
 
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +11,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import{ Task } from '../_models/task';
-import  { TASKS } from '../mock-task';
 
 @Injectable()
 export class TaskService {
@@ -35,7 +34,11 @@ export class TaskService {
 
   }
   updateTask(task: Task) {
-    return this.http.put('http://localhost:8080/api/task', task, this.header()).map((response: Response) => response.json());
+    return this.http.put('http://localhost:8080/api/task' + task.status, task, this.header()).map((response: Response) => response.json());
+  }
+
+  deleteTask(task: Task) {
+    return this.http.delete('http://localhost:8080/api/task' + task.id, this.header());
   }
 
 

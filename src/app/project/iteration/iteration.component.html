@@ -1,11 +1,10 @@
 <h2>Project iterations</h2>
 <ul>
-  <li *ngFor="let iteration of iterations ">
+  <li *ngFor="let iteration of iterations " (click)="selectedIteration=iteration">
     {{iteration.name}}
-    <a [routerLink]="['/kanbanBoard']"[queryParams]="{iterationId: iteration.id}">Widok tablicy</a>
     <p-splitButton label="Board View" icon="fa-cog" (onClick)="goToBoard(iteration.id)" [model]="items" ></p-splitButton>
   </li>
 
 </ul>
 <button [disabled]="loading" class="btn btn-primary" (click)="createIteration=!createIteration"> New Iteration </button>
-<create-iteration [createIteration]="createIteration" [currentProject]="this.currentProject"></create-iteration>
+<create-iteration [createIteration]="createIteration" [currentProject]="this.currentProject" (onSubmit)="ngOnInit()"></create-iteration>

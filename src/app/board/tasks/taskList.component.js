@@ -28,19 +28,33 @@ let TaskListComponent = class TaskListComponent {
     ngOnInit() {
         this.editingTask = false;
         this.taskToEdit = new index_1.Task;
+        this.getStatusesName();
+    }
+    getStatusesName() {
+        this.statusesName = [];
+        for (let status of this.statuses) {
+            console.log(status.name);
+            this.statusesName.push({ label: status.name, value: status.name });
+        }
     }
     editTask(task) {
         this.editingTask = true;
         this.taskToEdit = task;
         // this.onSubmit.emit(true);
     }
-    submitTask(f) {
-        this.taskToEdit = f.value;
-        console.log(this.taskToEdit);
+    deleteTask(task) {
+        this.taskService.deleteTask(task)
+            .subscribe(() => {
+            this.onSubmit.emit(true);
+            this.alertService.success('Task Deleted', true);
+        });
+    }
+    submitTask() {
         this.taskService.updateTask(this.taskToEdit)
             .subscribe(() => {
             this.onSubmit.emit(true);
             this.alertService.success('Task Edited', true);
+            this.editingTask = false;
         });
     }
 };
@@ -48,6 +62,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Array)
 ], TaskListComponent.prototype, "tasks", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], TaskListComponent.prototype, "statuses", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", Object)

@@ -17,23 +17,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require("@angular/core");
 const index_1 = require("../../_services/index");
 const router_1 = require("@angular/router");
+const alert_service_1 = require("../../_services/alert.service");
 let IterationComponent = class IterationComponent {
-    constructor(iterationService, projectService, router) {
+    constructor(iterationService, projectService, router, alertService) {
         this.iterationService = iterationService;
         this.projectService = projectService;
         this.router = router;
+        this.alertService = alertService;
         this.iterations = [];
     }
     ngOnInit() {
-        this.loadProjectIteration(this.currentProject);
         this.createIteration = false;
+        this.items = [
+            { label: 'Edit', icon: 'fa-refresh', command: () => {
+                    console.log('update' + this.selectedIteration.id);
+                } },
+            { label: 'Delete', icon: 'fa-trash', command: () => {
+                    this.delete();
+                } },
+        ];
     }
-    // to dziala tak jak mysle
+    delete() {
+        this.iterationService.deleteIteration(this.selectedIteration.id)
+            .subscribe(() => {
+            this.ngOnInit();
+            this.alertService.success('Iteration removed', true);
+        });
+    }
     ngOnChanges() {
         this.loadProjectIteration(this.currentProject);
     }
     loadProjectIteration(projectId) {
-        this.iterationService.getProjectIterations(projectId).subscribe(iterations => { this.iterations = iterations; });
+        this.iterationService.getProjectIterations(projectId).subscribe(iterations => {
+            this.iterations = iterations;
+            this.loadIterationAvailableTaskStatues();
+        });
+    }
+    loadIterationAvailableTaskStatues() {
+        for (let iteration of this.iterations) {
+            this.iterationService.getIterationTaskStatuses(iteration.id).subscribe(statues => { iteration.statues = statues; });
+        }
     }
     goToBoard(iterationId) {
         this.router.navigate(['/kanbanBoard',], { queryParams: { iterationId: iterationId } });
@@ -50,7 +73,7 @@ IterationComponent = __decorate([
         styleUrls: ['../project.style.css'],
         selector: 'iteration',
     }),
-    __metadata("design:paramtypes", [index_1.IterationService, index_1.ProjectService, router_1.Router])
+    __metadata("design:paramtypes", [index_1.IterationService, index_1.ProjectService, router_1.Router, alert_service_1.AlertService])
 ], IterationComponent);
 exports.IterationComponent = IterationComponent;
 //# sourceMappingURL=iteration.component.js.map

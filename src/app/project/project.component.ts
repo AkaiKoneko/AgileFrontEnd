@@ -1,11 +1,12 @@
 /**
  * Created by Akai on 2017-05-29.
  */
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { User , Project } from '../_models/index';
 import { UserService , ProjectService} from '../_services/index';
 import {MenuItem} from 'primeng/primeng';
+import {AlertService} from '../_services/alert.service';
 
 
 @Component({
@@ -25,22 +26,29 @@ export class ProjectComponent implements OnInit {
 
   items: MenuItem[];
 
-  constructor(private userService: UserService , private  projectService: ProjectService) {
+  constructor(private userService: UserService , private  projectService: ProjectService, private alertService: AlertService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
     this.loadUserProjects();
     this.items = [
-      {label: 'Update', icon: 'fa-refresh', command: () => {
-        console.log('update');
+      {label: 'Edit', icon: 'fa-refresh', command: () => {
+        console.log('update'+ this.selectedProject.name);
       }},
-      {label: 'Delete', icon: 'fa-close', command: () => {
-        console.log('Delete');
+      {label: 'Delete', icon: 'fa-trash', command: () => {
+        this.delete();
       }},
-      {label: 'Angular.io', icon: 'fa-link', url: 'http://angular.io'},
-      {label: 'Theming', icon: 'fa-paint-brush', routerLink: ['/theming']}
     ];
+  }
+
+  // troche głupię ale działa
+  private delete() {
+    this.projectService.deleteProject(this.selectedProject.id)
+      .subscribe(() => {
+        this.ngOnInit();
+        this.alertService.success('Project removed', true);
+      });
   }
 
 

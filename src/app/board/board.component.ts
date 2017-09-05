@@ -7,6 +7,8 @@ import {TaskService} from '../_services/task.service';
 import {NgForm} from '@angular/forms';
 import {Task} from '../_models/index';
 import {AlertService} from '../_services/alert.service';
+import {TaskStatus} from "../_models/taskStatus";
+import {IterationService} from "../_services/iteration.service";
 
 
 
@@ -21,10 +23,14 @@ export class BoardComponent implements OnInit {
 
   createTask: boolean;
   createStory: boolean;
+  editStory: boolean;
+
+  storyToEdit: Story = new Story;
   stories: Story[] = [];
+  statuses: TaskStatus[];
   model: any = {};
 
-  constructor(private storyService: StoryService, private taskService: TaskService, private activatedRoute: ActivatedRoute, private alertService: AlertService) {
+  constructor(private storyService: StoryService, private taskService: TaskService,private iterationService: IterationService, private activatedRoute: ActivatedRoute, private alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -34,16 +40,37 @@ export class BoardComponent implements OnInit {
 
     }));
     this.loadIterationStories(this.iterationId);
+    this.getStatues();
+  }
+
+  deleteStory(id: number) {
+    this.storyService.deleteStory(id)
+      .subscribe(() => {
+        this.ngOnInit();
+        this.alertService.success('Story Removed', true);
+
+      });
+  }
+  getStatues() {
+    this.iterationService.getIterationTaskStatuses(this.iterationId).subscribe(statuses => { this.statuses = statuses; });
   }
 
 fillStories() {
     for (let i = 0; i < this.stories.length; i++) {
 
       this.taskService.getStoryTasks(this.stories[i].id).subscribe(tasks => {this.stories[i].tasks = tasks; });
-
    }
 }
 
+  changeStory(f: NgForm) {
+    this.model = f.value;
+    this.storyService.updateStory(this.model)
+      .subscribe(() => {
+        this.ngOnInit();
+        this.alertService.success('Story edited', true);
+      });
+    this.editStory = false;
+  }
 
   submitStory(f: NgForm) {
     this.model = f.value;

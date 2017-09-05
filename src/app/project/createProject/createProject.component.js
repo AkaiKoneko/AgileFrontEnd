@@ -16,6 +16,7 @@ let CreateProjectComponent = class CreateProjectComponent {
         this.router = router;
         this.projectService = projectService;
         this.alertService = alertService;
+        this.onSubmit = new core_1.EventEmitter();
         this.model = {};
         this.loading = false;
     }
@@ -24,8 +25,8 @@ let CreateProjectComponent = class CreateProjectComponent {
         this.projectService.create(this.model)
             .subscribe(data => {
             this.alertService.success('Project created', true);
-            this.router.navigate(['/myProjects']);
-            // TODO emiter eventu odswieżenia widoku
+            this.create = false;
+            this.onSubmit.emit(true);
         }, error => {
             this.alertService.error(error);
             this.loading = false;
@@ -36,6 +37,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Boolean)
 ], CreateProjectComponent.prototype, "create", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CreateProjectComponent.prototype, "onSubmit", void 0);
 CreateProjectComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

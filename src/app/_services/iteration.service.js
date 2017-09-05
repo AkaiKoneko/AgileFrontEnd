@@ -29,14 +29,17 @@ let IterationService = class IterationService {
     create(iteration, currentProject) {
         return this.http.post('http://localhost:8080/api/iteration' + currentProject, iteration, this.header()).map((response) => response.json());
     }
+    deleteIteration(id) {
+        return this.http.delete('http://localhost:8080/api/iteration' + id, this.header());
+    }
+    getIterationTaskStatuses(id) {
+        return this.http.get('http://localhost:8080/api/iteration' + id + '/statuses', this.header()).map((response) => response.json());
+    }
     /*
      update(project: Project) {
      return this.http.put('/api/users/' + project.id, project, this.header()).map((response: Response) => response.json());
      }
-  
-     delete(id: number) {
-     return this.http.delete('http://localhost:8080/api/users' + id, this.header()).map((response: Response) => response.json());
-     }*/
+  */
     header() {
         // create authorization header
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));

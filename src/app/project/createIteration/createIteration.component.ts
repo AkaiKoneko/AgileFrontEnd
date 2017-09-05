@@ -1,10 +1,9 @@
-﻿import {Component, Input} from '@angular/core';
+﻿import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AlertService} from '../../_services/index';
 import {IterationService} from '../../_services/iteration.service';
 import {Iteration} from '../../_models/iteration';
-import {Project} from "../../_models/project";
 
 @Component({
     moduleId: module.id,
@@ -15,6 +14,7 @@ import {Project} from "../../_models/project";
 export class CreateIterationComponent {
   @Input() createIteration: boolean;
   @Input() currentProject: number;
+  @Output() onSubmit = new EventEmitter<Boolean>();
 
 
   model: Iteration = new Iteration();
@@ -30,9 +30,9 @@ export class CreateIterationComponent {
         this.iterationService.create(this.model, this.currentProject)
             .subscribe(
                 data => {
-                    this.alertService.success('Iteration created', true);
-                    this.router.navigate(['/myProjects']);
-                    // TODO emiter eventu odswieżenia widoku
+                  this.alertService.success('Iteration created', true);
+                  this.onSubmit.emit(true);
+                  this.createIteration = false;
                 },
                 error => {
                     this.alertService.error(error);

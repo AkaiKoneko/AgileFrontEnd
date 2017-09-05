@@ -26,13 +26,13 @@ let ProjectService = class ProjectService {
     create(project) {
         return this.http.post('http://localhost:8080/api/project', project, this.header()).map((response) => response.json());
     }
+    deleteProject(id) {
+        return this.http.delete('http://localhost:8080/api/project' + id, this.header());
+    }
     /*
       update(project: Project) {
         return this.http.put('/api/users/' + project.id, project, this.header()).map((response: Response) => response.json());
       }
-    
-      delete(id: number) {
-        return this.http.delete('http://localhost:8080/api/users' + id, this.header()).map((response: Response) => response.json());
       }*/
     header() {
         // create authorization header

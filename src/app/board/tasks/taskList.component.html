@@ -1,23 +1,21 @@
 <table class="table" align="center">
-  <tr>
-    <th>Finish</th>
-    <th>TODO</th>
-    <th>Undefined</th>
+  <tr >
+    <th *ngFor="let status of statuses">{{status.name}}</th>
+
   </tr>
   <ng-container *ngFor="let task of tasks ">
   <tr >
-    <td *ngIf="task.status=='Finish'" (click)="editTask(task)">{{task.name}}</td>
-    <td *ngIf="task.status!='Finish'"> </td>
-    <td>todo</td>
-    <td *ngIf="task.status=='undefined'" style="border: 2px solid;">Name : {{task.name}}
-
-      <br>
-      Remaining time : <span>{{task.duration}}</span>h
-      <button pButton type="button" class="ui-button-secondary" style="margin-left: auto" (click)="editTask(task)" icon="fa-cog" pTooltip="Edit" tooltipPosition="top"></button>
-      <button pButton type="button" class="ui-button-success" (click)="count()" icon="fa-users"  pTooltip="Assigned Users" tooltipPosition="top"></button>
-      <button pButton type="button" class="ui-button-danger" (click)="count()" icon="fa-trash"  pTooltip="Delete" tooltipPosition="top"></button>
+   <ng-container *ngFor="let status of statuses">
+    <td *ngIf="task.status==status.name" style="border: 2px solid;">Name : {{task.name}}
+      <br>Remaining time : <span>{{task.duration}}</span>h
+      <div>
+        <button pButton type="button" class="ui-button-secondary" style="margin-left: auto" (click)="editTask(task)" icon="fa-cog" pTooltip="Edit" tooltipPosition="top"></button>
+        <button pButton type="button" class="ui-button-success" (click)="deleteTask(task)" icon="fa-users"  pTooltip="Assigned Users" tooltipPosition="top"></button>
+        <button pButton type="button" class="ui-button-danger" (click)="deleteTask(task)" icon="fa-trash"  pTooltip="Delete" tooltipPosition="top"></button>
+      </div>
     </td>
-    <td *ngIf="task.status!='undefined'"> </td>
+     <td *ngIf="task.status!=status.name"></td>
+   </ng-container>
   </tr>
 
   </ng-container>
@@ -26,17 +24,17 @@
 </table>
 
 <p-dialog header="Edit Task" [(visible)]="editingTask">
-  <form #f="ngForm" (ngSubmit)="submitTask(f)" novalidate >
+
     <input type="hidden" name="id" [(ngModel)]="taskToEdit.id">
     <br><label>Nazwa :</label>
     <input type="text" pInputText [(ngModel)]="taskToEdit.name" name="name"/>
     <br> <label>Czas trwania :</label>
     <input name="duration" type="number" [(ngModel)]="taskToEdit.duration">
     <br><label>Status :</label>
-    <input name="status" type="text" [(ngModel)]="taskToEdit.status">
+    <p-dropdown [options]="statusesName" [(ngModel)]="taskToEdit.status" placeholder="Select Status"  [style]="{'width':'150px'}"></p-dropdown>
     <br>
-    <button pButton type="button" label="Edit" (click)=submitTask(f)></button>
+    <button pButton type="button" label="Edit" (click)=submitTask()></button>
     <button pButton type="button" label="Zamknij" (click)="editingTask=!editingTask"></button>
-  </form>
+
 
 </p-dialog>

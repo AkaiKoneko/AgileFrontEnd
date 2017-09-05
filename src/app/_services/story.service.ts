@@ -19,6 +19,16 @@ export class StoryService {
   createStory(story: Story, iterationId: number) {
     return this.http.post('http://localhost:8080/api/story' + iterationId, story, this.header()).map((response: Response) => response.json());
   }
+
+  updateStory(story: Story) {
+    console.log(story);
+    return this.http.put('http://localhost:8080/api/story', story, this.header()).map((response: Response) => response.json());
+  }
+
+  deleteStory(id: number) {
+    return this.http.delete('http://localhost:8080/api/story' + id, this.header());
+  }
+
   private header() {
     // create authorization header
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));

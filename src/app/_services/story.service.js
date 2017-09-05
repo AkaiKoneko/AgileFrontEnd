@@ -23,6 +23,13 @@ let StoryService = class StoryService {
     createStory(story, iterationId) {
         return this.http.post('http://localhost:8080/api/story' + iterationId, story, this.header()).map((response) => response.json());
     }
+    updateStory(story) {
+        console.log(story);
+        return this.http.put('http://localhost:8080/api/story', story, this.header()).map((response) => response.json());
+    }
+    deleteStory(id) {
+        return this.http.delete('http://localhost:8080/api/story' + id, this.header());
+    }
     header() {
         // create authorization header
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));

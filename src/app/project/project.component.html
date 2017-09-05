@@ -16,7 +16,7 @@
     </li>
     <button [disabled]="loading" class="btn btn-primary" (click)="create=!create"> New Project </button>
 
-    <create-project [create]="create"></create-project>
+    <create-project [create]="create" (onSubmit)="ngOnInit()"></create-project>
 
   </ul>
 

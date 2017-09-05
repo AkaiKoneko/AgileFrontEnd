@@ -18,6 +18,7 @@ let CreateIterationComponent = class CreateIterationComponent {
         this.router = router;
         this.iterationService = iterationService;
         this.alertService = alertService;
+        this.onSubmit = new core_1.EventEmitter();
         this.model = new iteration_1.Iteration();
         this.loading = false;
     }
@@ -26,8 +27,8 @@ let CreateIterationComponent = class CreateIterationComponent {
         this.iterationService.create(this.model, this.currentProject)
             .subscribe(data => {
             this.alertService.success('Iteration created', true);
-            this.router.navigate(['/myProjects']);
-            // TODO emiter eventu odswieżenia widoku
+            this.onSubmit.emit(true);
+            this.createIteration = false;
         }, error => {
             this.alertService.error(error);
             this.loading = false;
@@ -42,6 +43,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
 ], CreateIterationComponent.prototype, "currentProject", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CreateIterationComponent.prototype, "onSubmit", void 0);
 CreateIterationComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

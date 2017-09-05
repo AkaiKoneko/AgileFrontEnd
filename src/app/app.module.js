@@ -27,7 +27,7 @@ const createProject_component_1 = require("./project/createProject/createProject
 const iteration_component_1 = require("./project/iteration/iteration.component");
 const createIteration_component_1 = require("./project/createIteration/createIteration.component");
 const taskList_component_1 = require("./board/tasks/taskList.component");
-const newTask_component_1 = require("./board/editTask/newTask.component");
+const newTask_component_1 = require("./board/newTask/newTask.component");
 const primeng_1 = require("primeng/primeng");
 const primeng_2 = require("primeng/primeng");
 const primeng_3 = require("primeng/primeng");
@@ -48,6 +48,7 @@ AppModule = __decorate([
             primeng_2.CalendarModule,
             primeng_1.SplitButtonModule,
             primeng_3.TooltipModule,
+            primeng_1.DropdownModule,
         ],
         providers: [
             task_service_1.TaskService,

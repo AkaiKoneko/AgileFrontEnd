@@ -13,25 +13,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 const core_1 = require("@angular/core");
 const index_1 = require("../_services/index");
+const alert_service_1 = require("../_services/alert.service");
 let ProjectComponent = class ProjectComponent {
-    constructor(userService, projectService) {
+    constructor(userService, projectService, alertService) {
         this.userService = userService;
         this.projectService = projectService;
+        this.alertService = alertService;
         this.projects = [];
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     ngOnInit() {
         this.loadUserProjects();
         this.items = [
-            { label: 'Update', icon: 'fa-refresh', command: () => {
-                    console.log('update');
+            { label: 'Edit', icon: 'fa-refresh', command: () => {
+                    console.log('update' + this.selectedProject.name);
                 } },
-            { label: 'Delete', icon: 'fa-close', command: () => {
-                    console.log('Delete');
+            { label: 'Delete', icon: 'fa-trash', command: () => {
+                    this.delete();
                 } },
-            { label: 'Angular.io', icon: 'fa-link', url: 'http://angular.io' },
-            { label: 'Theming', icon: 'fa-paint-brush', routerLink: ['/theming'] }
         ];
+    }
+    // troche głupię ale działa
+    delete() {
+        this.projectService.deleteProject(this.selectedProject.id)
+            .subscribe(() => {
+            this.ngOnInit();
+            this.alertService.success('Project removed', true);
+        });
     }
     loadUserProjects() {
         this.projectService.getUserProjects(this.currentUser.id).subscribe(projects => { this.projects = projects; });
@@ -51,7 +59,7 @@ ProjectComponent = __decorate([
         templateUrl: 'project.component.html',
         styleUrls: ['project.style.css'],
     }),
-    __metadata("design:paramtypes", [index_1.UserService, index_1.ProjectService])
+    __metadata("design:paramtypes", [index_1.UserService, index_1.ProjectService, alert_service_1.AlertService])
 ], ProjectComponent);
 exports.ProjectComponent = ProjectComponent;
 //# sourceMappingURL=project.component.js.map

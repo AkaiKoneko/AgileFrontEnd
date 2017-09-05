@@ -19,11 +19,11 @@
       <td>
         {{story.name}}
         <div>
-          <button pButton type="button" class="ui-button-secondary" (click)="count()" icon="fa-cog"></button>
-          <button pButton type="button" class="ui-button-danger" (click)="count()" icon="fa-trash"></button>
+          <button pButton type="button" class="ui-button-secondary" (click)="storyToEdit=story;editStory=true" icon="fa-cog"></button>
+          <button pButton type="button" class="ui-button-danger" (click)="deleteStory(story.id)" icon="fa-trash"></button>
         </div>
       </td>
-      <td><tasks [tasks]="story.tasks" (onSubmit)="fillStories()"></tasks></td>
+      <td><tasks [tasks]="story.tasks" *ngIf="statuses" [statuses]="statuses" (onSubmit)="fillStories()"></tasks></td>
       <taskForm [storyId]="story.id" (onSubmit)="fillStories()"></taskForm>
         </tr>
         <button pButton type="button"  label="New Story" icon="fa-plus" (click)="createStory=!createStory"></button>
@@ -38,7 +38,17 @@
   <form #f="ngForm" (ngSubmit)="submitStory(f)" novalidate>
     <label>Name :</label>
     <input type="text" pInputText [(ngModel)]="model.name" name="name"/>
-    <br><button pButton type="button" label="Create" (click)=submitTask(f)></button>
+    <br><button pButton type="button" label="Create" (click)=submitStory(f)></button>
     <button pButton type="button" label="Close" (click)="createStory=!createStory"></button>
+  </form>
+</p-dialog>
+
+<p-dialog header="Edit Story" [(visible)]="editStory">
+  <form #f="ngForm" (ngSubmit)="changeStory(f)" novalidate>
+    <input type="hidden" name="id" [(ngModel)]="storyToEdit.id">
+    <label>Name :</label>
+    <input type="text" pInputText [(ngModel)]="storyToEdit.name" name="name"/>
+    <br><button pButton type="button" label="Edit" (click)=changeStory(f)></button>
+    <button pButton type="button" label="Close" (click)="editStory=!editStory"></button>
   </form>
 </p-dialog>

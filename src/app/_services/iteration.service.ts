@@ -22,17 +22,22 @@ export class IterationService {
   }
 
   create(iteration: Iteration, currentProject: number) {
-    return this.http.post('http://localhost:8080/api/iteration' + currentProject, iteration, this.header()).map((response: Response) => response.json());
+    return this.http.post('http://localhost:8080/api/iteration' + currentProject,
+      iteration, this.header()).map((response: Response) => response.json());
 
+  }
+  deleteIteration(id: number) {
+    return this.http.delete('http://localhost:8080/api/iteration' + id, this.header());
+  }
+
+  getIterationTaskStatuses(id: number) {
+    return this.http.get('http://localhost:8080/api/iteration' + id + '/statuses', this.header()).map((response: Response) => response.json());
   }
   /*
    update(project: Project) {
    return this.http.put('/api/users/' + project.id, project, this.header()).map((response: Response) => response.json());
    }
-
-   delete(id: number) {
-   return this.http.delete('http://localhost:8080/api/users' + id, this.header()).map((response: Response) => response.json());
-   }*/
+*/
 
 
   private header() {
