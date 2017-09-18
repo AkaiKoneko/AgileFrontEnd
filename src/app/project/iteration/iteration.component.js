@@ -25,10 +25,14 @@ let IterationComponent = class IterationComponent {
         this.router = router;
         this.alertService = alertService;
         this.iterations = [];
+        this.showDetails = false;
     }
     ngOnInit() {
         this.createIteration = false;
         this.items = [
+            { label: 'Details', icon: 'fa-cog', command: () => {
+                    this.showDetails = true;
+                } },
             { label: 'Edit', icon: 'fa-refresh', command: () => {
                     console.log('update' + this.selectedIteration.id);
                 } },

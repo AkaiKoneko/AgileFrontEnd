@@ -29,6 +29,7 @@ export class TaskListComponent implements OnInit {
   statusesName: SelectItem[];
   editingTask: boolean = false;
   taskToEdit: Task;
+  assign: boolean = false;
   constructor(private taskService: TaskService, private alertService: AlertService) {}
 
 ngOnInit() {
@@ -41,11 +42,15 @@ getStatusesName() {
     this.statusesName = [];
 
     for (let status of this.statuses){
-      console.log(status.name);
       this.statusesName.push({label: status.name, value : status.name});
     }
 
 }
+
+  assignUser(task: Task) {
+    this.assign = true;
+    this.taskToEdit =  task;
+  }
 
   editTask(task: Task) {
     this.editingTask = true;

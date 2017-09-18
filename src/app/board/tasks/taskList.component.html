@@ -10,7 +10,7 @@
       <br>Remaining time : <span>{{task.duration}}</span>h
       <div>
         <button pButton type="button" class="ui-button-secondary" style="margin-left: auto" (click)="editTask(task)" icon="fa-cog" pTooltip="Edit" tooltipPosition="top"></button>
-        <button pButton type="button" class="ui-button-success" (click)="deleteTask(task)" icon="fa-users"  pTooltip="Assigned Users" tooltipPosition="top"></button>
+        <button pButton type="button" class="ui-button-success" (click)="assignUser(task)" icon="fa-users"  pTooltip="Assigned Users" tooltipPosition="top"></button>
         <button pButton type="button" class="ui-button-danger" (click)="deleteTask(task)" icon="fa-trash"  pTooltip="Delete" tooltipPosition="top"></button>
       </div>
     </td>
@@ -22,6 +22,9 @@
 
 
 </table>
+
+
+<user-assign [task]="taskToEdit" *ngIf="assign"></user-assign>
 
 <p-dialog header="Edit Task" [(visible)]="editingTask">
 

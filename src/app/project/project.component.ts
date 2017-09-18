@@ -7,6 +7,7 @@ import { User , Project } from '../_models/index';
 import { UserService , ProjectService} from '../_services/index';
 import {MenuItem} from 'primeng/primeng';
 import {AlertService} from '../_services/alert.service';
+import {NgForm} from "@angular/forms";
 
 
 @Component({
@@ -18,13 +19,18 @@ import {AlertService} from '../_services/alert.service';
 export class ProjectComponent implements OnInit {
   currentUser: User;
   projects: Project[] = [];
-  selectedProject: Project;
+  selectedProject: Project = new Project;
 
   create: boolean;
-  showDetails: boolean;
+
+  editProject: boolean;
+
+
+  showDetails: boolean= false;
   showIteration: boolean;
 
   items: MenuItem[];
+  model: any = {};
 
   constructor(private userService: UserService , private  projectService: ProjectService, private alertService: AlertService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -34,7 +40,7 @@ export class ProjectComponent implements OnInit {
     this.loadUserProjects();
     this.items = [
       {label: 'Edit', icon: 'fa-refresh', command: () => {
-        console.log('update'+ this.selectedProject.name);
+        this.editProject = true;
       }},
       {label: 'Delete', icon: 'fa-trash', command: () => {
         this.delete();
@@ -50,7 +56,6 @@ export class ProjectComponent implements OnInit {
         this.alertService.success('Project removed', true);
       });
   }
-
 
   private loadUserProjects() {
     this.projectService.getUserProjects(this.currentUser.id).subscribe(projects => { this.projects = projects; });

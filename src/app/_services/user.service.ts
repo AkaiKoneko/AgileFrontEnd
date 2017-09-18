@@ -2,6 +2,7 @@
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { User } from '../_models/index';
+import {Task} from "../_models/task";
 
 @Injectable()
 export class UserService {
@@ -25,6 +26,10 @@ export class UserService {
 
     delete(id: number) {
         return this.http.delete('http://localhost:8080/api/users' + id, this.jwt()).map((response: Response) => response.json());
+    }
+
+    assignTask(userId: number, task: Task) {
+      return this.http.post('http://localhost:8080/api/user' + userId + '/task', task, this.jwt()).map((response: Response) => response.json());
     }
 
     // private helper methods

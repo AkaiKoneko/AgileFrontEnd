@@ -32,6 +32,9 @@ const primeng_1 = require("primeng/primeng");
 const primeng_2 = require("primeng/primeng");
 const primeng_3 = require("primeng/primeng");
 const animations_1 = require("@angular/platform-browser/animations");
+const editProject_component_1 = require("./project/editProject/editProject.component");
+const iteration_details_component_1 = require("./project/iterationDetails/iteration-details.component");
+const userAssign_component_1 = require("./board/users/userAssign.component");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -43,6 +46,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             app_routing_1.routing,
             primeng_1.ButtonModule,
+            primeng_1.ListboxModule,
             primeng_3.ConfirmDialogModule,
             primeng_2.DialogModule,
             primeng_2.CalendarModule,
@@ -65,8 +69,10 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             index_2.AlertComponent,
             createProject_component_1.CreateProjectComponent,
+            editProject_component_1.EditProjectComponent,
             task_detail_component_1.TaskDetailComponent,
             project_details_component_1.ProjectDetailComponent,
+            iteration_details_component_1.IterationDetailComponent,
             task_component_1.TaskComponent,
             index_5.HomeComponent,
             index_4.LoginComponent,
@@ -77,6 +83,7 @@ AppModule = __decorate([
             index_7.BoardComponent,
             taskList_component_1.TaskListComponent,
             newTask_component_1.NewTaskComponent,
+            userAssign_component_1.UserAssignComponent,
         ],
         bootstrap: [app_component_1.AppComponent]
     })

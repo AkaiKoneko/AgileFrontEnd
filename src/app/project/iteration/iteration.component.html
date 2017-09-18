@@ -8,3 +8,4 @@
 </ul>
 <button [disabled]="loading" class="btn btn-primary" (click)="createIteration=!createIteration"> New Iteration </button>
 <create-iteration [createIteration]="createIteration" [currentProject]="this.currentProject" (onSubmit)="ngOnInit()"></create-iteration>
+<iteration-detail [iteration]="selectedIteration" *ngIf="showDetails"></iteration-detail>

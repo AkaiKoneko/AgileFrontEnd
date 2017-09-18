@@ -1,0 +1,11 @@
+
+<p-dialog header="{{iteration.name}} details." [(visible)]="iteration">
+  <div><label>Name : </label>{{iteration.name}}</div>
+  <div><label>Begin date : </label>{{iteration.startDate | date:'fullDate' }}</div>
+  <div><label>Finish date : </label>{{iteration.endDate | date:'fullDate' }}</div>
+  <div><label>Aviable statues : </label></div>
+  <li *ngFor="let statues of iteration.statues " >
+    {{statues.name}}
+  </li>
+  <br>
+</p-dialog>

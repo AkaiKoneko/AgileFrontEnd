@@ -21,7 +21,6 @@ export class StoryService {
   }
 
   updateStory(story: Story) {
-    console.log(story);
     return this.http.put('http://localhost:8080/api/story', story, this.header()).map((response: Response) => response.json());
   }
 

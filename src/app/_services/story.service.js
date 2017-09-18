@@ -24,7 +24,6 @@ let StoryService = class StoryService {
         return this.http.post('http://localhost:8080/api/story' + iterationId, story, this.header()).map((response) => response.json());
     }
     updateStory(story) {
-        console.log(story);
         return this.http.put('http://localhost:8080/api/story', story, this.header()).map((response) => response.json());
     }
     deleteStory(id) {

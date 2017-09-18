@@ -30,11 +30,16 @@ export class IterationComponent implements OnInit, OnChanges {
   selectedIteration: Iteration;
   statues: TaskStatus[];
 
+  showDetails: boolean= false;
+
   constructor(private iterationService: IterationService , private  projectService: ProjectService, private router : Router, private alertService: AlertService) {}
 
   ngOnInit() {
     this.createIteration = false;
     this.items = [
+      {label: 'Details', icon: 'fa-cog', command: () => {
+        this.showDetails = true;
+      }},
       {label: 'Edit', icon: 'fa-refresh', command: () => {
         console.log('update' + this.selectedIteration.id);
       }},

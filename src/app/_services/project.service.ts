@@ -27,11 +27,9 @@ export class ProjectService {
     return this.http.delete('http://localhost:8080/api/project' + id, this.header());
   }
 
-/*
-  update(project: Project) {
-    return this.http.put('/api/users/' + project.id, project, this.header()).map((response: Response) => response.json());
+  updateProject(project: Project) {
+    return this.http.put('http://localhost:8080/api/project', project, this.header()).map((response: Response) => response.json());
   }
-  }*/
 
 
   private header() {

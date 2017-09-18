@@ -1,0 +1,9 @@
+
+<p-dialog header="{{task.name}}"[(visible)]="task" (hide)="sendData()">
+  <p-listbox [options]="allUsers" [(ngModel)]="selectedUsers" multiple="multiple" checkbox="checkbox" filter="filter" ></p-listbox>
+  <p-footer>
+    <button type="button" pButton icon="fa-check" (click)="sendData()" label="Yes"></button>
+    <button type="button" pButton icon="fa-close" (click)="display=false" label="No"></button>
+  </p-footer>
+
+</p-dialog>

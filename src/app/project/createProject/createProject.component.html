@@ -1,27 +1,18 @@
 ﻿
 
-  <p-dialog header="Title" [(visible)]="create">
-  <div>
-      <h2>Nowy Projekt</h2>
-      <form name="form" (ngSubmit)="newProject()" #f="ngForm" novalidate>
-        <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
-
-
-
-        <label for="description">Description</label>
-        <input type="text" class="form-control" name="description" [(ngModel)]="model.description" #description="ngModel" required />
-
-
-
-        <label for="startDate">Starting Date</label>
-        <input type="date" class="form-control" name="startDate" [(ngModel)]="model.startDate" #startDate="ngModel" required />
-        <label for="completionDate">Completion Date</label>
-        <input type="date" class="form-control" name="completionDate" [(ngModel)]="model.completionDate" #completionDate="ngModel" required />
-
-              <button [disabled]="loading" class="btn btn-primary">Stwórz</button>
-
-      </form>
-  </div>
+  <p-dialog header="Create Project" [(visible)]="create">
+    <form #f="ngForm" (ngSubmit)="changeStory(f)" novalidate>
+      <input type="hidden" name="id" [(ngModel)]="model.id">
+      <label>Name :</label>
+      <input type="text" pInputText [(ngModel)]="model.name" name="name"/><br>
+      <label>Description :</label>
+      <input type="text" [(ngModel)]="model.description" name="description"/><br>
+      <label>Begin Date :</label>
+      <input type="date" [(ngModel)]="model.startDate" name="startDate"/><br>
+      <label>Finish Date :</label>
+      <input type="date" [(ngModel)]="model.completionDate" name="completionDate"/>
+      <br><button pButton type="button" label="Create" (click)=newProject(f)></button>
+      <button pButton type="button" label="Close" (click)="create=!create"></button>
+    </form>
   </p-dialog>
 

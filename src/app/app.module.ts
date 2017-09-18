@@ -27,11 +27,14 @@ import { TaskListComponent } from './board/tasks/taskList.component';
 import { NewTaskComponent } from './board/newTask/newTask.component'
 
 
-import {ButtonModule, SplitButtonModule, DropdownModule} from 'primeng/primeng';
+import {ButtonModule, SplitButtonModule, DropdownModule, ListboxModule} from 'primeng/primeng';
 import {DialogModule , CalendarModule} from 'primeng/primeng';
 import {ConfirmDialogModule, ConfirmationService , TooltipModule} from 'primeng/primeng';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {EditProjectComponent} from "./project/editProject/editProject.component";
+import {IterationDetailComponent} from "./project/iterationDetails/iteration-details.component";
+import {UserAssignComponent} from "./board/users/userAssign.component";
 
 @NgModule({
   imports:      [
@@ -41,6 +44,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HttpModule,
     routing,
     ButtonModule,
+    ListboxModule,
     ConfirmDialogModule,
     DialogModule,
     CalendarModule,
@@ -66,8 +70,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     AlertComponent,
     CreateProjectComponent,
+    EditProjectComponent,
     TaskDetailComponent,
     ProjectDetailComponent,
+    IterationDetailComponent,
     TaskComponent,
     HomeComponent,
     LoginComponent,
@@ -78,6 +84,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     BoardComponent,
     TaskListComponent,
     NewTaskComponent,
+    UserAssignComponent,
   ],
   bootstrap:    [ AppComponent ]
 })

@@ -24,6 +24,7 @@ let TaskListComponent = class TaskListComponent {
         this.alertService = alertService;
         this.onSubmit = new core_1.EventEmitter();
         this.editingTask = false;
+        this.assign = false;
     }
     ngOnInit() {
         this.editingTask = false;
@@ -33,9 +34,12 @@ let TaskListComponent = class TaskListComponent {
     getStatusesName() {
         this.statusesName = [];
         for (let status of this.statuses) {
-            console.log(status.name);
             this.statusesName.push({ label: status.name, value: status.name });
         }
+    }
+    assignUser(task) {
+        this.assign = true;
+        this.taskToEdit = task;
     }
     editTask(task) {
         this.editingTask = true;

@@ -12,7 +12,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by Akai on 2017-05-29.
  */
 const core_1 = require("@angular/core");
-const index_1 = require("../_services/index");
+const index_1 = require("../_models/index");
+const index_2 = require("../_services/index");
 const alert_service_1 = require("../_services/alert.service");
 let ProjectComponent = class ProjectComponent {
     constructor(userService, projectService, alertService) {
@@ -20,13 +21,16 @@ let ProjectComponent = class ProjectComponent {
         this.projectService = projectService;
         this.alertService = alertService;
         this.projects = [];
+        this.selectedProject = new index_1.Project;
+        this.showDetails = false;
+        this.model = {};
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     ngOnInit() {
         this.loadUserProjects();
         this.items = [
             { label: 'Edit', icon: 'fa-refresh', command: () => {
-                    console.log('update' + this.selectedProject.name);
+                    this.editProject = true;
                 } },
             { label: 'Delete', icon: 'fa-trash', command: () => {
                     this.delete();
@@ -59,7 +63,7 @@ ProjectComponent = __decorate([
         templateUrl: 'project.component.html',
         styleUrls: ['project.style.css'],
     }),
-    __metadata("design:paramtypes", [index_1.UserService, index_1.ProjectService, alert_service_1.AlertService])
+    __metadata("design:paramtypes", [index_2.UserService, index_2.ProjectService, alert_service_1.AlertService])
 ], ProjectComponent);
 exports.ProjectComponent = ProjectComponent;
 //# sourceMappingURL=project.component.js.map

@@ -29,6 +29,9 @@ let UserService = class UserService {
     delete(id) {
         return this.http.delete('http://localhost:8080/api/users' + id, this.jwt()).map((response) => response.json());
     }
+    assignTask(userId, task) {
+        return this.http.post('http://localhost:8080/api/user' + userId + '/task', task, this.jwt()).map((response) => response.json());
+    }
     // private helper methods
     jwt() {
         // create authorization header with jwt token
