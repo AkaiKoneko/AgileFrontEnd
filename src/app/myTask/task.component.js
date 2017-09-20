@@ -15,7 +15,7 @@ let TaskComponent = class TaskComponent {
     constructor(taskService, userService) {
         this.taskService = taskService;
         this.userService = userService;
-        this.title = 'Angular Tast';
+        this.title = 'User Info';
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     getTasks() {
@@ -33,9 +33,19 @@ TaskComponent = __decorate([
         selector: 'my-tasks',
         providers: [task_service_1.TaskService],
         template: `
+    <div class="row">
+      <div class="col-sm-2">
+        MENU
+        <p><a [routerLink]="['/myTasks']">User Info</a></p>
+        <p><a [routerLink]="['/myTasks']">My Tasks</a></p>
+        <p><a [routerLink]="['/myProjects']">My Projects</a></p>
+        <p><a [routerLink]="['/login']">Logout</a></p>
+      </div>
+      <div  class="col-md-8">
     <h1>{{title}}</h1>
-    
-    
+    <p>Name :{{currentUser.firstName}}
+    <p>Last name  :{{currentUser.lastName}}
+    <p>Email :{{currentUser.email}}
     <h2>My Tasks</h2>
     <ul class="heroes">
       <li *ngFor="let task of tasks " 
@@ -47,7 +57,8 @@ TaskComponent = __decorate([
     
   <task-detail [task]="selectedTask"></task-detail>
     <p><a [routerLink]="['/']">Powrót</a></p>
-    
+      </div>
+    </div>
   `,
         styleUrls: ['app/myTask/task.style.css'],
     }),

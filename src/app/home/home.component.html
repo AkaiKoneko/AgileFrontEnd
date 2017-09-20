@@ -1,5 +1,10 @@
-﻿<div class="col-sm-2">
+﻿<div class="row">
+<div class="col-sm-2">
   MENU
+  <p><a [routerLink]="['/myTasks']">User Info</a></p>
+  <p><a [routerLink]="['/myTasks']">My Tasks</a></p>
+  <p><a [routerLink]="['/myProjects']">My Projects</a></p>
+  <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
 <div  class="col-md-8">
     <h1>Hi {{currentUser.firstName}}!</h1>
@@ -8,12 +13,10 @@
     <ul>
         <li *ngFor="let user of users">
             {{user.ssoId}} ({{user.firstName}} {{user.lastName}})
-          <button type="text" (click)="deleteUser(user.id)" pButton icon="fa-check" label="Confirm"></button>
+          <button type="text" (click)="deleteUser(user.id)" pButton icon="fa-times" label="Delete"></button>
         </li>
     </ul>
-    <p><a [routerLink]="['/myTasks']">My Tasks</a></p>
-    <p><a [routerLink]="['/myProjects']">My Projects</a></p>
-    <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
 
 <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
+</div>

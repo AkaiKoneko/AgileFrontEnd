@@ -1,16 +1,14 @@
-﻿<div class="col-sm-2">
-</div>
-<h2>Iteration Table View </h2>
+﻿<div class="row">
 <div class="col-sm-2">
   MENU
   <p><a [routerLink]="['/myTasks']">User Info</a></p>
   <p><a [routerLink]="['/myTasks']">My Tasks</a></p>
   <p><a [routerLink]="['/myProjects']">My Projects</a></p>
-  <p><a [routerLink]="['/myProjects']">Back</a></p>
   <p><a [routerLink]="['/login']">Logout</a></p>
 </div>
 <div class="col-md-8">
-  <table class="ui-datatable" >
+  <h2>Iteration Table View </h2>
+  <table class="ui-datatable">
     <thead>
     <th>Story Name</th>
     </thead>
@@ -52,3 +50,4 @@
     <button pButton type="button" label="Close" (click)="editStory=!editStory"></button>
   </form>
 </p-dialog>
+</div>
